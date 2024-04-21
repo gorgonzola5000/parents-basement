@@ -1,6 +1,6 @@
 +++
 title = 'How to host a website using Cloudflare Pages'
-date = 2024-01-14T07:07:07+01:00
+date = 2024-04-04T07:07:07+01:00
 draft = false
 +++
 ## Introduction
@@ -27,4 +27,48 @@ Once you have done that, go to "Register Domains" under the "Domain Registration
 
 In this tutorial we will be using Hugo, a static site generator. Static sites, compared to dynamic websites, are quicker since they do not require querying any databases on your server and files are stored in HTML, CSS and JS. They can also be hosted for free on Cloudflare Pages.
 
-First, you will need to [install](https://gohugo.io/installation/) Hugo on your local machine. Once you've done it you can `git clone` this blog's snapshot at the time of writing this article from [this repository](github).
+First, you will need to [install](https://gohugo.io/installation/) Hugo on your local machine. Once you've done it you can `git clone` this blog from [this repository](https://github.com/gorgonzola5000/parents-basement). You will then want to create a repository on GitHub and add it as a remote to your local repository.
+
+Now, we will add a 'hello-world' style post to our blog. Having installed Hugo, open up a terminal and type `hugo new content posts/my-first-post.md`
+
+This will create a new markdown file in which we will write our post.
+
+You can start by adding this to your newly created file:
+
+    +++
+    title = 'Hello World'
+    date = 2024-01-14T07:07:07+01:00
+    draft = true
+    +++
+    ## Introduction
+
+    This is my first post
+
+    Learn more about Hugo [here](https://gohugo.io/getting-started/quick-start/)
+
+We can now run `hugo server -D` to see our blog. Go to the link that popped up in the terminal and see for yourself.
+
+Now that we have a website somewhat ready, we can change `draft` from `true` to `false`. This will ensure our post will get published in the next step. Then simply run `hugo` - this will 'publish' our website by creating the necessary files our web hosting provider will utilise.
+
+We can now push our website to GitHub and configure our hosting.
+
+## Cloudflare Pages
+
+Go to Cloudflare and select 'Workers & Pages' tab. Here, click create a new application.
+Now we will instruct our new Cloudflare Page to use our newly created GitHub repository (make sure it's public!). Select 'Pages' tab and click 'Connect to Git'
+
+![link-cloudflare-page-to-repo](/link-cloudflare-page-to-repo.jpg)
+
+Link your GitHub account, select your blog repository and click 'Begin setup'. We don't have to specify any build settings in the next step since we have already built our website using `hugo` command locally and then pushed to our remote. We can click 'Save and Deploy'. You should now have a website online. You can now click 'Visit site' and copy the address. We will need it in the next step.
+
+![deployed](/deployed.jpg)
+
+## Pointing our domain to the blog
+
+Go to 'Websites' tab and select your domain. Then go to DNS and 'Add a record'. Create a 'CNAME' record with 'name' set to '@' and IP address set to the link we copied earlier. The created record should look like this:
+
+![dns](/dns.jpg)
+
+You can also go to SSL/TLS and enable full encryption. This will force HTTPS.
+
+You should now have a blog ready! I hope this tutorial helped you out.
