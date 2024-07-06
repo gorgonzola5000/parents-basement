@@ -1,5 +1,5 @@
 +++ 
-draft = false
+draft = true
 date = 2024-04-05T01:19:26+02:00
 title = "Coming up"
 description = ""
@@ -9,6 +9,7 @@ tags = []
 categories = []
 externalLink = ""
 series = []
+disableComments = true
 +++
 
 Coming up:

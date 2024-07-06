@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Parents&#39; Basement Blog</title>
-    <link>https://parents-basement.win/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on Parents&#39; Basement Blog</description>
-    <generator>Hugo 0.125.1</generator>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 05 Apr 2024 01:19:26 +0200</lastBuildDate>
-    <atom:link href="https://parents-basement.win/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Jul 2024 00:00:00 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Coming up</title>
-      <link>https://parents-basement.win/posts/to-do/</link>
-      <pubDate>Fri, 05 Apr 2024 01:19:26 +0200</pubDate>
-      <guid>https://parents-basement.win/posts/to-do/</guid>
-      <description>Coming up:&#xA;Proxmox installation Setting up Docker Installing Pi-Hole Configuring Wireguard as full-tunnel VPN (+DuckDNS) Installing Home Assistant (and maybe some other tutorials) Using a reverse proxy for SSL/TLS Setting up a Dashboard Installing wger Grocy Jellyfin And in a little more distant future: Virtualizing pfSense Setting up the *arr stack and qbittorrent System monitoring TrueNAS Core/Scale Ansible Kubernetes? </description>
+      <title>Easy Proxmox upgrade and VM migration without PBS</title>
+      <link>http://localhost:1313/posts/easy-proxmox-upgrade-and-vm-migration-without-pbs/</link>
+      <pubDate>Sat, 06 Jul 2024 00:00:00 +0100</pubDate>
+      <guid>http://localhost:1313/posts/easy-proxmox-upgrade-and-vm-migration-without-pbs/</guid>
+      <description>Why now and why so much effort Link to heading Proxmox 7 is becoming EOL in July 2024 so you need to upgrade to a new OS. You can use this mandatory upgrade as an excuse to switch out your current hardware to something new, like me.&#xA;If you don&amp;rsquo;t care about starting fresh and you have the option to do an in-place upgrade with Proxmox Backup Server, then certainly do it that way.</description>
     </item>
     <item>
       <title>How to host a website using Cloudflare Pages</title>
-      <link>https://parents-basement.win/posts/how-to-host-a-website-using-cloudflare-pages/</link>
+      <link>http://localhost:1313/posts/how-to-host-a-website-using-cloudflare-pages/</link>
       <pubDate>Thu, 04 Apr 2024 07:07:07 +0100</pubDate>
-      <guid>https://parents-basement.win/posts/how-to-host-a-website-using-cloudflare-pages/</guid>
+      <guid>http://localhost:1313/posts/how-to-host-a-website-using-cloudflare-pages/</guid>
       <description>Introduction Link to heading This is my first ever blog post so keep this in mind. Have you ever wanted to share your knowledge or just something that you find interesting with other people? Maybe you spent a lot of time figuring something out and want to help some stranger out and get this weird warm feeling that you made some random person on the other side of the globe happy?</description>
     </item>
   </channel>

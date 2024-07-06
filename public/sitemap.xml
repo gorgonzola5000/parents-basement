@@ -2,24 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://parents-basement.win/posts/to-do/</loc>
-    <lastmod>2024-04-05T01:19:26+02:00</lastmod>
+    <loc>http://localhost:1313/posts/easy-proxmox-upgrade-and-vm-migration-without-pbs/</loc>
+    <lastmod>2024-07-06T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://parents-basement.win/</loc>
-    <lastmod>2024-04-05T01:19:26+02:00</lastmod>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2024-07-06T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://parents-basement.win/posts/</loc>
-    <lastmod>2024-04-05T01:19:26+02:00</lastmod>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2024-07-06T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://parents-basement.win/posts/how-to-host-a-website-using-cloudflare-pages/</loc>
+    <loc>http://localhost:1313/posts/how-to-host-a-website-using-cloudflare-pages/</loc>
     <lastmod>2024-04-04T07:07:07+01:00</lastmod>
-  </url><url>
-    <loc>https://parents-basement.win/authors/</loc>
-  </url><url>
-    <loc>https://parents-basement.win/categories/</loc>
-  </url><url>
-    <loc>https://parents-basement.win/series/</loc>
-  </url><url>
-    <loc>https://parents-basement.win/tags/</loc>
   </url>
 </urlset>

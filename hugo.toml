@@ -3,6 +3,7 @@ title = "Parents' Basement Blog"
 theme = "hugo-coder"
 languagecode = "en"
 defaultcontentlanguage = "en"
+disableKinds = ["taxonomy"]
 
 paginate = 20
 
@@ -13,9 +14,9 @@ style = "github-dark"
 
 [params]
   author = "gorgonzola5000"
-  info = "Full Stack DevOps and Magician"
+  info = "Homelabber and Linux stan"
   description = "DESCRIPTION"
-  keywords = "developer,homelab,proxmox,docker,docker-compose,linux,jellyfin,pihole"
+  keywords = "homelab, proxmox, docker, docker-compose, linux, jellyfin, pihole"
   avatarurl = "images/avatar.jpg"
   #gravatar = "john.doe@example.com"
 
@@ -34,11 +35,11 @@ style = "github-dark"
   # customSCSS = ["scss/custom.scss"]
   # customJS = ["js/custom.js"]
 
-[taxonomies]
-  category = "categories"
-  series = "series"
-  tag = "tags"
-  author = "authors"
+# [taxonomies]
+#   category = "categories"
+#   series = "series"
+#   tag = "tags"
+#   author = "authors"
 
 # Social links
 [[params.social]]

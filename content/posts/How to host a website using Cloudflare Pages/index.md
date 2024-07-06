@@ -2,6 +2,7 @@
 title = 'How to host a website using Cloudflare Pages'
 date = 2024-04-04T07:07:07+01:00
 draft = false
+disableComments = true
 +++
 ## Introduction
 

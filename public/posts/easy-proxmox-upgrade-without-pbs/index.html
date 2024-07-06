@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Easy Proxmox upgrade and VM migration without PBS · Parents&#39; Basement Blog
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="gorgonzola5000">
+<meta name="description" content="Why now and why so much effort Link to heading Proxmox 7 is becoming EOL in July 2024 so you need to upgrade to a new OS. You can use this mandatory upgrade as an excuse to switch out your current hardware to something new, like me.
+If you don&rsquo;t care about starting fresh and you have the option to do an in-place upgrade with Proxmox Backup Server, then certainly do it that way.">
+<meta name="keywords" content="developer,homelab,proxmox,docker,docker-compose,linux,jellyfin,pihole">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Easy Proxmox upgrade and VM migration without PBS">
+  <meta name="twitter:description" content="Why now and why so much effort Link to heading Proxmox 7 is becoming EOL in July 2024 so you need to upgrade to a new OS. You can use this mandatory upgrade as an excuse to switch out your current hardware to something new, like me.
+If you don’t care about starting fresh and you have the option to do an in-place upgrade with Proxmox Backup Server, then certainly do it that way.">
+
+<meta property="og:url" content="http://localhost:1313/posts/easy-proxmox-upgrade-without-pbs/">
+  <meta property="og:site_name" content="Parents&#39; Basement Blog">
+  <meta property="og:title" content="Easy Proxmox upgrade and VM migration without PBS">
+  <meta property="og:description" content="Why now and why so much effort Link to heading Proxmox 7 is becoming EOL in July 2024 so you need to upgrade to a new OS. You can use this mandatory upgrade as an excuse to switch out your current hardware to something new, like me.
+If you don’t care about starting fresh and you have the option to do an in-place upgrade with Proxmox Backup Server, then certainly do it that way.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-06T00:00:00+01:00">
+    <meta property="article:modified_time" content="2024-07-06T00:00:00+01:00">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/posts/easy-proxmox-upgrade-without-pbs/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Parents&#39; Basement Blog
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Blog</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/posts/easy-proxmox-upgrade-without-pbs/">
+              Easy Proxmox upgrade and VM migration without PBS
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2024-07-06T00:00:00&#43;01:00">
+                July 6, 2024
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              2-minute read
+            </span>
+          </div>
+          
+          
+          
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h2 id="why-now-and-why-so-much-effort">
+  Why now and why so much effort
+  <a class="heading-link" href="#why-now-and-why-so-much-effort">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Proxmox 7 is becoming EOL in July 2024 so you need to upgrade to a new OS. You can use this mandatory upgrade as an excuse to switch out your current hardware to something new, like me.</p>
+<p>If you don&rsquo;t care about starting fresh and you have the option to do an in-place upgrade with Proxmox Backup Server, then certainly do it that way.</p>
+<h2 id="prerequisites">
+  Prerequisites
+  <a class="heading-link" href="#prerequisites">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ul>
+<li>USB flashdrive for a new Proxmox ISO (it hurts me to say this but avoid using Ventoy)</li>
+<li>machine running outdated Proxmox eg. Proxmox 7.x</li>
+<li>SSH access to PVE</li>
+<li>sudo installed and a sudo user (Proxmox doesn&rsquo;t have sudo installed by default)</li>
+</ul>
+<h2 id="vm-backup">
+  VM backup
+  <a class="heading-link" href="#vm-backup">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>To back up your VMs, SSH with a sudo user into PVE and run <code>sudo vzdump &lt;VM ID&gt; --compress &lt;compression format&gt; --storage &lt;storage ID&gt;</code> for every VM that you want to migrate. For example: <code>sudo vzdump 100 --compress zstd --storage local</code>.</p>
+<p>If you have used Proxmox installer to partition the disk during installation and have not changed default backup dump directory, all your VM backups should be in <code>/var/lib/vz/dump</code>.</p>
+<p>Now we need to get these files onto our machine. We can use &lsquo;scp&rsquo; for this. We can do this using a single command (provided you have used the same compression format when backing up your VMs). Run <code>scp &lt;user&gt;@&lt;host&gt;:/path/to/backups/*.zst /path/to/backups/local</code>. For example: <code>scp mark@192.168.1.2:/var/lib/vz/dump/*.zst /home/mark/Desktop/proxmox-backups</code>. This will copy all files ending in &lsquo;.zst&rsquo; to a provided local directory.</p>
+<h2 id="install-and-configure-proxmox">
+  Install and configure Proxmox
+  <a class="heading-link" href="#install-and-configure-proxmox">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Flash the USB with Proxmox ISO. Avoid using Ventoy as it has some problems with Proxmox at the time of writing this. There is not much to say here. Just follow the GUI installer. You can find the link <a href="https://www.proxmox.com/en/proxmox-virtual-environment/get-started"  class="external-link" target="_blank" rel="noopener">here</a>.</p>
+<h2 id="copy-the-backups-to-the-new-os">
+  Copy the backups to the new OS
+  <a class="heading-link" href="#copy-the-backups-to-the-new-os">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Here we can once again use <code>scp</code> - <code>scp /path/to/backups/local/*.zst &lt;user&gt;@&lt;host&gt;:/path/to/backups</code>. For example: <code>scp /home/mark/Desktop/proxmox-backups/*.zst mark@192.168.1.2:/var/lib/vz/dump/</code>. This will once again copy all files ending in &lsquo;.zst&rsquo; to a specified remote location. Don&rsquo;t forget to setup SSH access to the server and install sudo.</p>
+<h2 id="run-the-vms">
+  Run the VMs
+  <a class="heading-link" href="#run-the-vms">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>You can do this with <code>sudo qmrestore</code> - <code>qmrestore &lt;archive&gt; &lt;vmid&gt;</code>. Run this command for each VM you want to run. For example: <code>sudo qmrestore vzdump-qemu-100-2024_07_05-23_47_10.vma.zst 100</code>.</p>
+<p>I hope this helped you out:]</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script>
+  window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "gorgonzola5000" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    
+    document.addEventListener('themeChanged', function (e) { 
+        if (document.readyState == 'complete') {
+          DISQUS.reset({ reload: true, config: disqus_config });
+        }
+    });
+</script>
+        
+        
+        
+        
+
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2024
+     gorgonzola5000 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+  
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>
