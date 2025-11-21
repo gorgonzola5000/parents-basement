@@ -36,16 +36,18 @@ This will create a new markdown file in which we will write our post.
 
 You can start by adding this to your newly created file:
 
-    +++
-    title = 'Hello World'
-    date = 2024-01-14T07:07:07+01:00
-    draft = true
-    +++
-    ## Introduction
+```
++++
+title = 'Hello World'
+date = 2024-01-14T07:07:07+01:00
+draft = true
++++
+## Introduction
 
-    This is my first post
+This is my first post
 
-    Learn more about Hugo [here](https://gohugo.io/getting-started/quick-start/)
+Learn more about Hugo [here](https://gohugo.io/getting-started/quick-start/)
+```
 
 We can now run `hugo server -D` to see our blog. Go to the link that popped up in the terminal and see for yourself.
 
